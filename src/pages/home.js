@@ -11,7 +11,6 @@ class home extends Component {
     componentDidMount(){
         axios.get('/shouts')
          .then(res=>{
-             console.log(res.data)
              this.setState({
                  shouts: res.data
              })
@@ -21,7 +20,7 @@ class home extends Component {
     }
     render() {
         let recentShoutsMarkup = this.state.shouts ?(
-            this.state.shouts.map(shout => <Shout shout={shout} />)
+            this.state.shouts.map(shout => <Shout key={shout.shoutId} shout={shout} />)
             
             
         ): 

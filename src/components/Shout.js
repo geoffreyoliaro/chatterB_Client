@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Link from 'react-router-dom/Link'
+import {Link} from 'react-router-dom'
 
 
 //Mui stuff
@@ -40,7 +40,7 @@ class Shout extends Component {
              image = {userImage}
              title ="Profile image" className ={classes.image}
              />
-             <CardContent class ={classes.content}>
+             <CardContent className={classes.content}>
                 <Typography variant="h5" component={Link} to={`/users/${userHandle}`} >{userHandle}</Typography> 
                 <Typography variant="body1">{body}</Typography>
                 <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
