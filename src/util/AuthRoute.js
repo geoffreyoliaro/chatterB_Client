@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { component } from 'react';
 import {Route, Redirect} from 'react-router-dom';
+
+
 
 const AuthRoute=({component: Component, authenticated, ...rest}) =>(
     <Route

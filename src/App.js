@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import './App.css';
+
+//Redux
+import {Provider} from 'react-redux';
+import store from './redux/store';
+
 //Mui stuff
 import {ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
@@ -34,6 +39,7 @@ class App extends Component{
 render(){
    return(
       <MuiThemeProvider theme={cust_theme}>
+      <Provider store ={store}>
         <div className="App">
          <Router>
          <Navbar/>
@@ -46,6 +52,8 @@ render(){
         </div>
         </Router>
       </div>
+
+      </Provider>
 </MuiThemeProvider>
     )
   }
