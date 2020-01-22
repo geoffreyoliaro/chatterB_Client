@@ -3,9 +3,11 @@ import{
     SET_ERRORS,
     CLEAR_ERRORS, 
     LOADING_UI,
-    SET_UNAUTHENTICATED
+    SET_UNAUTHENTICATED,
+    LOADING_USER
 } from '../types';
 import axios from 'axios';
+import { formatMs } from '@material-ui/core';
 
 export const loginUser =(userData, history)=>(dispatch)=>{
     dispatch({type:LOADING_UI});
@@ -33,6 +35,7 @@ export const logoutUser = () => (dispatch) => {
 }
 
 export const getUserData = () => (dispatch) =>{
+    dispatch({type: LOADING_USER });
     axios
     .get('/user', {headers:{Authorization:localStorage.getItem("FBIdtoken")}})
         .then((res) =>{
@@ -64,6 +67,16 @@ export const signupUser =(newUserData, history)=>(dispatch)=>{
         });
 
 };
+export const uploadImage = (FormData)=>(dispatch)=>{
+    dispatch({type: LOADING_USER})
+    axios.post('/user/image', FormData)        
+        .then(()=>{
+            dispatch(getUserData())
+        })
+        .catch(err=>console.error(err))
+}
+
+
 
 const setAuthorizationHeader=(token) =>{
     const FBIdtoken =`Bearer ${token}`;

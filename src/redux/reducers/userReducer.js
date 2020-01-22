@@ -1,11 +1,13 @@
 import{
     SET_USER, 
     SET_AUTHENTICATED, 
-    SET_UNAUTHENTICATED
+    SET_UNAUTHENTICATED,
+    LOADING_USER
 } from '../types';
 
 const initialState ={
     authenticated:false,
+    loading:false,
     credentials:{},
     likes:[],
     notifications:[]
@@ -28,6 +30,11 @@ export default function(state = initialState, action){
                     loading:false,
                     ...action.payload
                 };
+            case LOADING_USER:
+                return{
+                    ...state,
+                    loading:true
+                }    
                 default:
                     return state;    
     }
