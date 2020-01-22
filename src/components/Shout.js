@@ -30,12 +30,14 @@ const styles= {
 class Shout extends Component {
     render() {
         dayjs.extend(relativeTime)
-        const {classes, shout:{body,
-                         createdAt, 
-                         userImage,
-                          userHandle, 
-                          likeCount, 
-                          commentCount}} = this.props;
+        const {classes, shout:{
+            body,
+            createdAt, 
+            userImage,
+            userHandle, 
+            likeCount, 
+            commentCount
+        }} = this.props;
 
         return (
          <Card className ={classes.card}>

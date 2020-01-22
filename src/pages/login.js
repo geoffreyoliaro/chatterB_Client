@@ -27,27 +27,26 @@ constructor(){
         email:'',
         password:'',
         errors:{}
-    }
-}
+    };
+};
+
 componentWillReceiveProps(nextProps){
     if(nextProps.UI.errors){
-    this.setState({errors:nextProps.UI.errors});
+        this.setState({errors: nextProps.UI.errors});
     }
-
 }
-handleSubmit =(event)=>{
+
+handleSubmit = (event) =>{
     event.preventDefault();
-    
     const userData = {
     email:this.state.email,
     password:this.state.password
-        
     };
+
   this.props.loginUser(userData, this.props.history);
-    
 };
 
-handleChange= (event) =>{
+handleChange =(event) =>{
     this.setState({
         [event.target.name]: event.target.value
     }); 
@@ -58,7 +57,9 @@ handleChange= (event) =>{
             classes,
             UI:{loading}
         } =this.props;
+
         const{errors} = this.state;
+
         return (
             <Grid container className={classes.form}>
                 <Grid item sm/>
@@ -92,7 +93,8 @@ handleChange= (event) =>{
                     error={errors.password ? true : false}
                     value={this.state.password} 
                     onChange={this.handleChange} 
-                    fullWidth/>
+                    fullWidth
+                    />
                     {errors.general &&(
                         <Typography variant="body2" className={classes.customError}>
                         {errors.general}
@@ -133,7 +135,6 @@ const mapStateToProps = (state)=>({
 });
 const mapActionsToProps={
     loginUser
-
 }
 
 export default connect(
