@@ -13,6 +13,7 @@ export default
         dark: '#ba000d',
         contrastText: '#000',
       },
+      
     },
     typography:{
       useNextVariants:true
@@ -33,7 +34,8 @@ export default
   },
   button:{
       marginTop:20,
-      position:'relative'
+      position:'relative',
+      
   },
   customError:{
       color:'red',
