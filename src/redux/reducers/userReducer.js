@@ -55,7 +55,7 @@ export default function(state = initialState, action){
                 return{
                     ...state,
                     likes:state.likes.filter(
-                        (like)=>like.shoutId === action.payload.shoutId)
+                        (like)=>like.shoutId !== action.payload.shoutId)
                 }            
                 default:
                     return state;    

@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
-
+import DeleteShout from './DeleteShout';
 
 
 //Mui stuff
@@ -24,6 +24,7 @@ import {likeShout, unLikeShout} from '../redux/actions/dataActions';
 
 const styles= {
     card:{
+        position:'relative',
         display:'flex',
         marginBottom:20,
     },
@@ -49,13 +50,12 @@ class Shout extends Component {
              };
     likeShout = () =>{
         this.props.likeShout(this.props.shout.shoutId);
-    }
+    };
     unLikeShout = () =>{
         this.props.unLikeShout(this.props.shout.shoutId);
     };         
 
-
-    render() {
+render() {
         dayjs.extend(relativeTime)
         const {
             classes,
@@ -67,7 +67,9 @@ class Shout extends Component {
             likeCount, 
             commentCount
     }, 
-    user:{ authenticated }
+    user:{ authenticated, 
+        credentials:{ handle }
+    }
     
 }=this.props;
 
@@ -77,8 +79,7 @@ const likeButton = !authenticated ? (
                     <FavoriteBorder color="primary"/>
                 </Link>
             </MyButton>
-        ) :(
-           this.likedShout() ? (
+        ) : this.likedShout() ? (
                <MyButton tip="remove like" onClick={this.unLikeShout}>
                    <FavoriteIcon color="primary"/>
                </MyButton>
@@ -86,28 +87,31 @@ const likeButton = !authenticated ? (
             <MyButton tip="like" onClick={this.likeShout}>
                 <FavoriteBorder color="primary"/>
             </MyButton>
+        );
 
-           )
-        )
-        return (
-         <Card className ={classes.card}>
-             <CardMedia 
-             image = {userImage}
-             title ="Profile image" className ={classes.image}
-             />
-             <CardContent className={classes.content}>
-                <Typography variant="h5" component={Link} to={`/users/${userHandle}`} >{userHandle}</Typography> 
-                <Typography variant="body1">{body}</Typography>
-                <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
-                {likeButton}
-                <span>{likeCount} Likes </span>
-                <MyButton tip="comments">
-                    <ChatIcon color="primary"/>
-                </MyButton>
-                <span>{commentCount} comments </span>  
+ const deleteButton = authenticated && userHandle === handle ? (
+ <DeleteShout shoutId="shoutId"/>
+ ):null; 
+return (
+    <Card className ={classes.card}>
+        <CardMedia 
+        image = {userImage}
+        title ="Profile image" className ={classes.image}
+        />
+        <CardContent className={classes.content}>
+        <Typography variant="h5" component={Link} to={`/users/${userHandle}`} >{userHandle}</Typography> 
+        {deleteButton}
+        <Typography variant="body1">{body}</Typography>
+        <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
+        {likeButton}
+        <span>{likeCount} Likes </span>
+        <MyButton tip="comments">
+            <ChatIcon color="primary"/>
+        </MyButton>
+        <span>{commentCount} comments </span>  
 
-             </CardContent>
-         </Card>
+        </CardContent>
+    </Card>
         )
     }
 }

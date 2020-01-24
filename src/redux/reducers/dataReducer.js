@@ -1,4 +1,10 @@
-import {SET_SHOUTS, LIKE_SHOUT, UNLIKE_SHOUT, LOADING_DATA} from '../types';
+import {
+    SET_SHOUTS, 
+    LIKE_SHOUT, 
+    UNLIKE_SHOUT, 
+    LOADING_DATA, 
+    DELETE_SHOUT
+} from '../types';
 
 
  const initialState = {
@@ -24,6 +30,14 @@ import {SET_SHOUTS, LIKE_SHOUT, UNLIKE_SHOUT, LOADING_DATA} from '../types';
             case UNLIKE_SHOUT:    
                 let index = state.shouts.findIndex((newShout) => newShout.shoutId === action.payload.shoutId);
                 state.shouts[index] = action.payload;
+                return{
+                    ...state
+                };
+            case DELETE_SHOUT:
+                index = state.shouts.findIndex(
+                    newShout =>newShout.shoutId === action.payload
+                    );
+                state.shouts.splice(index, 1);
                 return{
                     ...state
                 }

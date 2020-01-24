@@ -7,7 +7,6 @@ import{
     LOADING_USER
 } from '../types';
 import axios from 'axios';
-import { formatMs } from '@material-ui/core';
 
 export const loginUser =(userData, history)=>(dispatch)=>{
     dispatch({type:LOADING_UI});

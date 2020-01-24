@@ -2,7 +2,8 @@ import {
     SET_SHOUTS,
     LOADING_DATA, 
     LIKE_SHOUT, 
-    UNLIKE_SHOUT
+    UNLIKE_SHOUT,
+    DELETE_SHOUT
 } from '../types';
 import axios from 'axios';
 
@@ -15,16 +16,15 @@ export const getShouts =()=> (dispatch)=>{
             dispatch({
                 type:SET_SHOUTS,
                 payload:res.data
-            })
+            });
         })
         .catch((err)=>{
             dispatch({
             type: SET_SHOUTS,
             payload: []
-
-            })
-        })
-}
+            });
+        });
+};
 
 //Like a shout
 export const likeShout = (shoutId)=>(dispatch)=>{
@@ -38,6 +38,7 @@ export const likeShout = (shoutId)=>(dispatch)=>{
         .catch((err)=> console.error(err));
 }
 
+//Unlike a shout
 export const unLikeShout = (shoutId)=>(dispatch)=>{
     axios.get(`/newShout/${shoutId}/unLikeShout`)
         .then((res)=>{
@@ -49,6 +50,11 @@ export const unLikeShout = (shoutId)=>(dispatch)=>{
         .catch((err)=> console.error(err));
 }
 
-
-
-//Unlike a shout
+export const deleteShout=(shoutId) =>(dispatch)=>{
+    axios
+        .delete(`/newShout/${shoutId}`)
+        .then(()=>{
+            dispatch({type: DELETE_SHOUT, payload: shoutId})
+        })
+        .catch((err)=> console.log(err));
+}
