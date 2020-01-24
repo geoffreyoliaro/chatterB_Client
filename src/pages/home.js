@@ -1,32 +1,25 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import Shout from '../components/Shout';
 import Profile from '../components/Profile';
+import {connect} from 'react-redux'
+import {getShouts} from '../redux/actions/dataActions';
 
 class home extends Component {
-    state ={
-        shouts:null
-    }
     componentDidMount(){
-        axios.get('/shouts')
-         .then(res=>{
-             this.setState({
-                 shouts: res.data
-             })
-         })
-         .catch(err=>console.log(err.code));
-
+        this.props.getShouts();
     }
     render() {
-        let recentShoutsMarkup = this.state.shouts ?(
-            this.state.shouts.map(shout => <Shout key={shout.shoutId} shout={shout} />)
+        const{shouts, loading} = this.props.data;
+        let recentShoutsMarkup = !loading ?(
+           shouts.map(shout => <Shout key={shout.shoutId} shout={shout} />)
             
-        ): 
+        ): (
         <LinearProgress variant="query" />
-        
+        );
         
         return (
             <Grid container spacing ={2}>
@@ -42,4 +35,16 @@ class home extends Component {
     }
 }
 
-export default home
+
+home.propTypes ={
+    getShouts: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) =>({
+    data:state.data
+})
+
+
+export default connect(mapStateToProps,{getShouts})(home)
