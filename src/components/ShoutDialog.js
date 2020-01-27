@@ -9,14 +9,16 @@ import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 
-import AddIcon from '@material-ui/icons/Add';
+
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
 
 import CloseIcon from '@material-ui/icons/Close';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 import {connect} from 'react-redux';
 import {getShout} from '../redux/actions/dataActions';
+import LikeButton from './LikeButton';
 
 const styles = (theme) =>({
     ...theme.spreadThis,
@@ -36,8 +38,18 @@ const styles = (theme) =>({
     closeButton:{
         position:'absolute',
         left:'90%'
-
+    },
+    expandButton:{
+        position:'absolute',
+        left:'90%'
+    },
+    spinnerDiv:{
+        textAlign:'center',
+        marginTop: 50,
+        marginBottom: 50
     }
+
+
 
 })
 
@@ -72,9 +84,11 @@ class ShoutDialog extends Component{
     
         
         const dialogMarkup = loading ? (
-            <CircularProgress size={200}/>
+            <div className={classes.spinnerDiv}>
+            <CircularProgress size={200} thickness={2}/>
+            </div>
         ) : (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={5}>
                     <img src={userImage} alt="Profile" className={classes.profileImage}/>
                 </Grid>
@@ -94,6 +108,13 @@ class ShoutDialog extends Component{
                     <Typography variant="body1">
                         {body}
                     </Typography>
+                    <LikeButton shoutId={shoutId}/>
+                    <span>{likeCount} likes</span>
+                    <MyButton tip="comments">
+                    <ChatIcon color="primary"/>
+                     </MyButton>
+                    <span>{commentCount} comments </span>  
+
                 </Grid>
             </Grid>
         );

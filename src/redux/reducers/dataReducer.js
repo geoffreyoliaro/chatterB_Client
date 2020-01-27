@@ -31,13 +31,16 @@ import {
             case SET_SHOUT:
                 return{
                     ...state,
-                    shout: action.payload
+                    newShout: action.payload
 
                 }    
             case LIKE_SHOUT:
             case UNLIKE_SHOUT:    
                 let index = state.shouts.findIndex((newShout) => newShout.shoutId === action.payload.shoutId);
                 state.shouts[index] = action.payload;
+                if(state.newShout.shoutId ===action.payload.shoutId){
+                    state.newShout = action.payload;
+                }
                 return{
                     ...state
                 };
