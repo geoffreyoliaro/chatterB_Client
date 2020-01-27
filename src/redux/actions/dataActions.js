@@ -3,7 +3,11 @@ import {
     LOADING_DATA, 
     LIKE_SHOUT, 
     UNLIKE_SHOUT,
-    DELETE_SHOUT
+    DELETE_SHOUT,
+    LOADING_UI,
+    SET_ERRORS,
+    CLEAR_ERRORS,
+    POST_SHOUT
 } from '../types';
 import axios from 'axios';
 
@@ -25,6 +29,28 @@ export const getShouts =()=> (dispatch)=>{
             });
         });
 };
+
+//Post a shout
+
+export const postShout =(new_Shout) =>(dispatch)=>{
+    dispatch({type: LOADING_UI});
+    axios.post('/newShout', new_Shout)
+        .then((res)=>{
+            dispatch({
+                type:POST_SHOUT,
+                payload:res.data
+            });
+            dispatch({type: CLEAR_ERRORS});
+        })
+        .catch((err)=>{
+            dispatch({
+                type: SET_ERRORS,
+                payload:err.response.data
+            })
+            console.error(err)
+        })
+
+}
 
 //Like a shout
 export const likeShout = (shoutId)=>(dispatch)=>{
@@ -57,4 +83,9 @@ export const deleteShout=(shoutId) =>(dispatch)=>{
             dispatch({type: DELETE_SHOUT, payload: shoutId})
         })
         .catch((err)=> console.log(err));
+}
+
+
+export const clearErrors = ()=>(dispatch)=>{
+    dispatch({type:CLEAR_ERRORS});
 }

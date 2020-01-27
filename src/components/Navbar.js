@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
+import PostShout from './PostShout'
 
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications'
 
@@ -13,7 +13,7 @@ import Notifications from '@material-ui/icons/Notifications'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { Tooltip } from '@material-ui/core';
+
 
 
 class Navbar extends Component {
@@ -24,9 +24,7 @@ class Navbar extends Component {
                 <Toolbar className="nav-container">
                     {authenticated ? (
                         <Fragment>
-                            <MyButton tip = "Post a shout">
-                                <AddIcon color="primary"/>
-                            </MyButton>
+                            <PostShout/>
                            <Link to="/">
                                <MyButton tip = "Home">
                                 <HomeIcon color="primary"/>

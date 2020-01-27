@@ -3,7 +3,8 @@ import {
     LIKE_SHOUT, 
     UNLIKE_SHOUT, 
     LOADING_DATA, 
-    DELETE_SHOUT
+    DELETE_SHOUT,
+    POST_SHOUT
 } from '../types';
 
 
@@ -41,6 +42,18 @@ import {
                 return{
                     ...state
                 }
+            case POST_SHOUT:
+                return{
+                    ...state,
+                    shouts:[
+                        action.payload,
+                        ...state.shouts
+
+                    ]
+
+                }
+
+
             default: 
                 return state;
      }

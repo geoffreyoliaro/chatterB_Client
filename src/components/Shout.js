@@ -90,7 +90,7 @@ const likeButton = !authenticated ? (
         );
 
  const deleteButton = authenticated && userHandle === handle ? (
- <DeleteShout shoutId="shoutId"/>
+ <DeleteShout shoutId={this.props.shout.shoutId}/>
  ):null; 
 return (
     <Card className ={classes.card}>
