@@ -7,7 +7,9 @@ import {
     LOADING_UI,
     SET_ERRORS,
     CLEAR_ERRORS,
-    POST_SHOUT
+    POST_SHOUT,
+    STOP_LOADING_UI, 
+    SET_SHOUT
 } from '../types';
 import axios from 'axios';
 
@@ -16,7 +18,7 @@ export const getShouts =()=> (dispatch)=>{
     dispatch({type:LOADING_DATA});
     axios
     .get('/shouts')
-    .then((res)=>{
+    .then((res) => {
             dispatch({
                 type:SET_SHOUTS,
                 payload:res.data
@@ -30,8 +32,22 @@ export const getShouts =()=> (dispatch)=>{
         });
 };
 
-//Post a shout
+//get a single shout
+export const getShout =(shoutId) => (dispatch)=>{
+    dispatch({type:LOADING_UI});
+    axios.get(`/newShout/${shoutId}`)
+    .then((res)=>{
+        dispatch({
+            type:SET_SHOUT,
+            payload:res.data
+        });
+        dispatch({type:STOP_LOADING_UI})
+    })
+    .catch((err)=>console.log(err))
+}
 
+
+//Post a shout
 export const postShout =(new_Shout) =>(dispatch)=>{
     dispatch({type: LOADING_UI});
     axios.post('/newShout', new_Shout)

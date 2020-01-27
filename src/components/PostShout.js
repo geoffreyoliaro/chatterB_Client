@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 //MUI stuff
 import { Dialog, DialogTitle, DialogContent, TextField, Button, withStyles } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
 import MyButton from '../util/MyButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';

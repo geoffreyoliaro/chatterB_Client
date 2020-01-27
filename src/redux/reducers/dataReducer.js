@@ -1,5 +1,6 @@
 import {
     SET_SHOUTS, 
+    SET_SHOUT,
     LIKE_SHOUT, 
     UNLIKE_SHOUT, 
     LOADING_DATA, 
@@ -27,6 +28,12 @@ import {
                     shouts: action.payload,
                     loading:false
                 }
+            case SET_SHOUT:
+                return{
+                    ...state,
+                    shout: action.payload
+
+                }    
             case LIKE_SHOUT:
             case UNLIKE_SHOUT:    
                 let index = state.shouts.findIndex((newShout) => newShout.shoutId === action.payload.shoutId);
