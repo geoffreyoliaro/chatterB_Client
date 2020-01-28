@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 //redux
 import {connect} from 'react-redux';
-import {likeShout, unLikeShout} from '../redux/actions/dataActions';
+import {likeShout, unLikeShout} from '../../redux/actions/dataActions';
 
 
 class LikeButton extends Component {

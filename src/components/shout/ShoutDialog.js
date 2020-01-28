@@ -1,9 +1,10 @@
 import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
+import Comments from './Comments';
 
 //MUI stuff
-import { Dialog, DialogTitle, DialogContent, TextField, Button, withStyles, CircularProgress } from '@material-ui/core';
-import MyButton from '../util/MyButton';
+import { Dialog, DialogContent, withStyles, CircularProgress } from '@material-ui/core';
+import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid'
@@ -17,15 +18,12 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 
 import {connect} from 'react-redux';
-import {getShout} from '../redux/actions/dataActions';
+import {getShout} from '../../redux/actions/dataActions';
 import LikeButton from './LikeButton';
 
 const styles = (theme) =>({
     ...theme.spreadThis,
-    invisibleSeparator:{
-        border:'none',
-        margin: 4
-    },
+    
     profileImage:{
         maxWidth:200,
         height:200,
@@ -77,7 +75,8 @@ class ShoutDialog extends Component{
                 createdAt, 
                 likeCount, 
                 commentCount, 
-                userHandle
+                userHandle, 
+                comments
             }, 
             UI:{loading}
         } =this.props;
@@ -114,8 +113,9 @@ class ShoutDialog extends Component{
                     <ChatIcon color="primary"/>
                      </MyButton>
                     <span>{commentCount} comments </span>  
-
                 </Grid>
+                <hr className ={classes.visibleSeparator}/>
+                <Comments comments ={comments}/>
             </Grid>
         );
     

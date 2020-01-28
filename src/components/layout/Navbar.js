@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
-import PostShout from './PostShout'
+import MyButton from '../../util/MyButton';
+import PostShout from '../shout/PostShout'
 
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications'

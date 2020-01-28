@@ -4,13 +4,13 @@ import WithStyles from '@material-ui/core/styles/withStyles';
 
 
 import {connect} from 'react-redux';
-import {editUserDetails} from '../redux/actions/userActions';
+import {editUserDetails} from '../../redux/actions/userActions';
 
 
 
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 const styles =(theme)=>({
     ...theme.spreadThis,

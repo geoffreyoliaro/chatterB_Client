@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 //MUI stuff
 import { Dialog, DialogTitle, DialogContent, TextField, Button, withStyles } from '@material-ui/core';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 
 //redux
 import {connect} from 'react-redux';
-import {postShout, clearErrors} from '../redux/actions/dataActions';
+import {postShout, clearErrors} from '../../redux/actions/dataActions';
 
 const styles=(theme)=>({
     ...theme.spreadThis,
