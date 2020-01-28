@@ -5,7 +5,8 @@ import {
     UNLIKE_SHOUT, 
     LOADING_DATA, 
     DELETE_SHOUT,
-    POST_SHOUT
+    POST_SHOUT,
+    SUBMIT_COMMENT
 } from '../types';
 
 
@@ -62,6 +63,18 @@ import {
                     ]
 
                 }
+            case SUBMIT_COMMENT:
+                return{
+                    ...state,
+                    newShout:{
+                        ...state.newShout,
+                        comments:[
+                            action.payload, 
+                            ...state.newShout.comments
+
+                        ]
+                    }
+                }   
 
 
             default: 

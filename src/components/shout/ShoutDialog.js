@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 //MUI stuff
 import { Dialog, DialogContent, withStyles, CircularProgress } from '@material-ui/core';
@@ -18,7 +19,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 
 import {connect} from 'react-redux';
-import {getShout} from '../../redux/actions/dataActions';
+import {getShout, clearErrors} from '../../redux/actions/dataActions';
 import LikeButton from './LikeButton';
 
 const styles = (theme) =>({
@@ -61,6 +62,7 @@ class ShoutDialog extends Component{
     }
     handleClose = () =>{
         this.setState({open:false});
+        this.props.clearErrors();
     }
     
 
@@ -115,6 +117,7 @@ class ShoutDialog extends Component{
                     <span>{commentCount} comments </span>  
                 </Grid>
                 <hr className ={classes.visibleSeparator}/>
+                <CommentForm shoutId={shoutId} />
                 <Comments comments ={comments}/>
             </Grid>
         );
@@ -152,6 +155,7 @@ class ShoutDialog extends Component{
 }
 
 ShoutDialog.propTypes={
+    clearErrors:PropTypes.func.isRequired,
     getShout:PropTypes.func.isRequired,
     shoutId:PropTypes.string.isRequired,
     userHandle:PropTypes.string.isRequired,
@@ -165,7 +169,8 @@ const mapStateToProps = (state) =>({
 })
 
 const mapActionsToProps ={
-    getShout
+    getShout,
+    clearErrors
 };
 
 export default connect(
