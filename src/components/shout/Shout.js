@@ -78,7 +78,7 @@ return (
         </MyButton>
         <span>{commentCount} comments </span>  
 
-        <ShoutDialog shoutId={shoutId} userHandle={userHandle}></ShoutDialog>    
+        <ShoutDialog shoutId={shoutId} userHandle={userHandle} openDialog={this.props.openDialog}/>
 
         </CardContent>
     </Card>
@@ -88,7 +88,8 @@ return (
 Shout.propTypes = {
     user:PropTypes.object.isRequired,
     shout:PropTypes.object.isRequired,
-    classes:PropTypes.object.isRequired
+    classes:PropTypes.object.isRequired,
+    openDialog:PropTypes.bool
 
 }
 

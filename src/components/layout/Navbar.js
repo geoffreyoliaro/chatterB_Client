@@ -6,7 +6,7 @@ import MyButton from '../../util/MyButton';
 import PostShout from '../shout/PostShout'
 
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications'
+import Notifications from './Notifications';
 
 
 //MUI stuff
@@ -30,9 +30,7 @@ class Navbar extends Component {
                                 <HomeIcon color="primary"/>
                             </MyButton>
                            </Link>
-                           <MyButton tip = "Notifications">
-                                <Notifications color="primary"/>
-                            </MyButton>
+                                <Notifications/>
                         </Fragment>
                     ):(
                         <Fragment>

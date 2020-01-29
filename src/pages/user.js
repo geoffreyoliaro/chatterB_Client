@@ -12,11 +12,17 @@ import {getUserData} from '../redux/actions/dataActions';
 
 class user extends Component {
     state={
-        profile:null
+        profile:null,
+        shoutIdParam:null
     }
 
     componentDidMount(){
         const handle = this.props.match.params.handle;
+        const shoutId = this.props.match.params.shoutId;
+
+        if(shoutId) this.setState({shoutIdParam: shoutId});
+
+
         this.props.getUserData(handle);
         axios(`/user/${handle}`)
             .then((res)=>{
@@ -29,13 +35,20 @@ class user extends Component {
     }
     render() {
         const {shouts, loading} = this.props.data;
-
+        const{shoutIdParam} =this.state;
         const shoutsMarkup = loading ? (
             <p>loading data ...</p>
         ) : shouts === null ? (
             <p>No shouts from user</p>
+        ) : !shoutIdParam ?(
+            shouts.map((newShout)=> <Shout key={newShout.shoutId} shout={newShout}/>)
         ) : (
-            shouts.map(newShout=> <Shout key={newShout.shoutId} shout={newShout}/>)
+            shouts.map(newShout =>{
+                if(newShout.shoutId !== shoutIdParam)
+                    return <Shout key={newShout.shoutId} shout={newShout}/>
+                else return <Shout key={newShout.shoutId} shout={newShout} openDialog/>    
+
+            })            
         )
 
         return (

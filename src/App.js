@@ -28,7 +28,7 @@ import axios from 'axios';
 // import { render } from '@testing-library/react';
 
 const cust_theme = createMuiTheme(themeFile);
-
+axios.defaults.baseURL="https://us-central1-chatterb-b5f90.cloudfunctions.net/api";
 
 const token = localStorage.FBIdtoken;
 if(token){
@@ -58,6 +58,7 @@ render(){
             <AuthRoute exact path = "/login" component ={login} />
             <AuthRoute exact path = "/signup" component ={signup} />
             <Route exact path ="/users/:handle" component ={user}/>
+            <Route exact path="/users/:handle/newShout/:shoutId" component={user} />
           </Switch>  
         </div>
         </Router>
