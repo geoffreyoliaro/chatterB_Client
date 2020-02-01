@@ -119,7 +119,7 @@ export const deleteShout=(shoutId) =>(dispatch)=>{
             dispatch({type: DELETE_SHOUT, payload: shoutId})
         })
         .catch((err)=> console.log(err));
-}
+};
 
 export const getUserData =(userHandle)=>(dispatch)=>{
     dispatch({type:LOADING_DATA});

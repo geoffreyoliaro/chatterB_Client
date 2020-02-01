@@ -37,7 +37,7 @@ import {
                 }    
             case LIKE_SHOUT:
             case UNLIKE_SHOUT:    
-                let index = state.shouts.findIndex((newShout) => newShout.shoutId === action.payload.shoutId);
+                var index = state.shouts.findIndex((newShout) => newShout.shoutId === action.payload.shoutId);
                 state.shouts[index] = action.payload;
                 if(state.newShout.shoutId ===action.payload.shoutId){
                     state.newShout = action.payload;
@@ -46,7 +46,7 @@ import {
                     ...state
                 };
             case DELETE_SHOUT:
-                index = state.shouts.findIndex(
+                 index = state.shouts.findIndex(
                     newShout =>newShout.shoutId === action.payload
                     );
                 state.shouts.splice(index, 1);

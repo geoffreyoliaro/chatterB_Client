@@ -9,6 +9,7 @@ import EditDetails from './EditDetails'
 import Button from '@material-ui/core/Button';
 import MuiLink from '@material-ui/core/Link';
 import { Paper, Typography} from '@material-ui/core';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 //Icons
 import LocationOn from '@material-ui/icons/LocationOn';
@@ -158,7 +159,7 @@ class Profile extends Component {
                 ):(
                     <Paper className={classes.paper}>
                         <Typography variant="body2" align="center">
-                        You are not logged in, login again
+                        You are not logged in, please login or signup
                         </Typography>
                         <div className={classes.buttons}>
                             <Button variant="contained" color="primary" component={Link} to="/login">
@@ -169,7 +170,7 @@ class Profile extends Component {
                             </Button> 
                         </div>
                     </Paper>
-                )):(<p>Loading ...</p>)
+                )):<LinearProgress variant="query" />
         return profileMarkup;
     }
 }

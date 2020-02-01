@@ -1,6 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
-import WithStyles from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 
 import {connect} from 'react-redux';
@@ -13,6 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import MyButton from '../../util/MyButton';
 
 const styles =(theme)=>({
+
     ...theme.spreadThis,
     button: {
         float: 'right'
@@ -69,7 +70,7 @@ class EditDetails extends Component {
         return (
            <Fragment>
              <MyButton tip="Edit Details" onClick={this.handleOpen} btnClassName={classes.button}>
-                <EditIcon color="primary"/>
+                <EditIcon color="primary" />
              </MyButton>
            <Dialog
            open = {this.state.open}
@@ -137,4 +138,7 @@ const mapStateToProps =(state)=>({
     credentials: state.user.credentials
 })
 
-export default connect(mapStateToProps, {editUserDetails})(WithStyles(styles)(EditDetails));
+export default connect(
+    mapStateToProps, 
+    {editUserDetails}
+    )(withStyles(styles)(EditDetails));
