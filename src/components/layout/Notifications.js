@@ -76,7 +76,7 @@ class Notifications extends Component{
                                 component={Link}
                                 color="default"
                                 variant= "body1"
-                                to={`/users/${not.recipient}/newShout/${not.shoutId}`}>
+                                to={`/users/${not.recepient}/newShout/${not.shoutId}`}>
                                     {not.sender} {verb} your Shout {time}
                                 </Typography>
                         </MenuItem>
